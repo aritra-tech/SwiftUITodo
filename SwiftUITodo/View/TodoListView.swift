@@ -8,11 +8,35 @@
 import SwiftUI
 
 struct TodoListView: View {
+    
+    @State var items: [String] = [
+        "First title",
+        "Second title",
+        "Third title"
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(items, id: \.self) { item in
+                ListRowView(title: item)
+            }
+        }
+        .listStyle(PlainListStyle())
+        .navigationTitle("Todo📍")
+        .navigationBarItems(
+            leading: EditButton(),
+            trailing: NavigationLink(
+                "Add",
+                destination: AddTodoView()
+            )
+        )
+        
     }
 }
 
 #Preview {
-    TodoListView()
+    NavigationView{
+        TodoListView()
+    }
 }
+
