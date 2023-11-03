@@ -9,6 +9,9 @@ import SwiftUI
 
 struct AddTodoView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var todoListViewModel: TodoListViewModel
+
     @State var text: String = ""
     
     var body: some View {
@@ -20,9 +23,7 @@ struct AddTodoView: View {
                     .padding(.horizontal)
                     .background(Color.gray)
                 
-                Button(action: {
-                    
-                }, label: {
+                Button(action: onSave, label: {
                     Text("Save")
                         .foregroundColor(.white)
                         .font(.headline)
@@ -36,10 +37,17 @@ struct AddTodoView: View {
         }
         .navigationTitle("Add a Todo ✏️")
     }
+    
+    func onSave(){
+        todoListViewModel.addTodo(title: text)
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 #Preview {
     NavigationView {
         AddTodoView()
     }
+    .environmentObject(TodoListViewModel())
+
 }

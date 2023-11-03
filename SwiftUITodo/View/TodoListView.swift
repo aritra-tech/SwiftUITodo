@@ -9,17 +9,15 @@ import SwiftUI
 
 struct TodoListView: View {
     
-    @State var todos: [TodoModel] = [
-        TodoModel(title: "First title", isCompleted: true),
-        TodoModel(title: "First title", isCompleted: false),
-        TodoModel(title: "Third", isCompleted: false)
-    ]
+    @EnvironmentObject var todoListViewModel: TodoListViewModel
     
     var body: some View {
         List {
-            ForEach(todos) { todo in
+            ForEach(todoListViewModel.todos) { todo in
                 ListRowView(todo: todo)
             }
+            .onDelete(perform: todoListViewModel.deleteTodo)
+            .onMove(perform: todoListViewModel.moveTodo)
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Todo📍")
@@ -38,5 +36,6 @@ struct TodoListView: View {
     NavigationView{
         TodoListView()
     }
+    .environmentObject(TodoListViewModel())
 }
 
