@@ -37,4 +37,10 @@ class TodoListViewModel: ObservableObject {
         let newTodo = TodoModel(title: title, isCompleted: false)
         todos.append(newTodo)
     }
+    
+    func updateTodo(todo: TodoModel) {
+        if let index = todos.firstIndex(where: { $0.id == todo.id}) {
+            todos[index] = todo.updateCompletion()
+        }
+    }
 }

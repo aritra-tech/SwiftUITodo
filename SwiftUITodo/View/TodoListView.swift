@@ -15,6 +15,11 @@ struct TodoListView: View {
         List {
             ForEach(todoListViewModel.todos) { todo in
                 ListRowView(todo: todo)
+                    .onTapGesture {
+                        withAnimation(.linear) {
+                            todoListViewModel.updateTodo(todo: todo)
+                        }
+                    }
             }
             .onDelete(perform: todoListViewModel.deleteTodo)
             .onMove(perform: todoListViewModel.moveTodo)
