@@ -13,10 +13,12 @@ struct ListRowView: View {
     
     var body: some View {
         HStack {
+            Text(todo.title)
+            
+            Spacer()
+            
             Image(systemName: todo.isCompleted ? "checkmark.circle" : "circle")
                 .foregroundColor(todo.isCompleted ? .green : .red)
-            Text(todo.title)
-            Spacer()
         }
         .font(.title2)
         .padding(.vertical,8)
