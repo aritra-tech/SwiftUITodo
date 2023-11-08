@@ -21,7 +21,7 @@ struct AddTodoView: View {
                     .cornerRadius(10)
                     .frame(height: 55)
                     .padding(.horizontal)
-                    .background(Color.gray)
+                    .background(Color(UIColor.secondarySystemBackground))
                 
                 Button(action: onSave, label: {
                     Text("Save")
