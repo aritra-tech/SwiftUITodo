@@ -15,13 +15,14 @@ struct AddTodoView: View {
     @State var text: String = ""
     
     var body: some View {
-        ScrollView {
+        
             VStack {
-                TextField("Type here...", text: $text)
-                    .cornerRadius(10)
+                TextField("Type here...", text: $text, axis: .vertical)
                     .frame(height: 55)
+                    .lineLimit(3...10)
                     .padding(.horizontal)
-                    .background(Color(UIColor.secondarySystemBackground))
+                
+                Spacer(minLength: 500)
                 
                 Button(action: onSave, label: {
                     Text("Save")
@@ -34,8 +35,7 @@ struct AddTodoView: View {
                 })
             }
             .padding(14)
-        }
-        .navigationTitle("Add a Todo ✏️")
+            .navigationTitle("Add a Todo ✏️")
     }
     
     func onSave(){
