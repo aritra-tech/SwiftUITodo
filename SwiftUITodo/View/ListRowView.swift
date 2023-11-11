@@ -1,19 +1,12 @@
-//
-//  ListRowView.swift
-//  SwiftUITodo
-//
-//  Created by Aritra on 31/10/23.
-//
-
 import SwiftUI
 
 struct ListRowView: View {
-    
     let todo: TodoModel
     
     var body: some View {
         HStack {
             Text(todo.title)
+                .lineLimit(1)
             
             Spacer()
             
